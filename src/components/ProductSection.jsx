@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import StackedPanels from './ui/StackedPanels';
 
 export default function ProductSection() {
   const text = "What we make ?";
@@ -23,7 +24,7 @@ export default function ProductSection() {
   }, [isInView]);
 
   return (
-    <section className="relative w-full flex flex-col items-center pt-8 pb-48 bg-[#fdfbf7] overflow-hidden -mt-10 md:-mt-20 z-30">
+    <section className="relative w-full flex flex-col items-center pt-8 pb-[300px] bg-[#fdfbf7] overflow-hidden -mt-10 md:-mt-20 z-30">
       {/* Liquid / Jelly Transition Divider */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] z-20" style={{ transform: 'translateY(-99%)' }}>
         <svg 
@@ -42,16 +43,51 @@ export default function ProductSection() {
         ref={containerRef}
         className="w-full relative flex items-center justify-center -mt-16 py-10"
       >
-        <h2 className="text-[50px] md:text-[90px] font-sans font-bold text-[#1a1a1a] flex items-center">
+        <h2 className="text-[70px] md:text-[130px] font-sans font-bold text-[#1a1a1a] flex items-center tracking-tight">
           {displayedText}
           {/* Blinking Cursor */}
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ repeat: Infinity, ease: "linear", duration: 0.6, repeatType: "reverse" }}
-            className="inline-block ml-3 w-[6px] md:w-[12px] h-[50px] md:h-[90px] bg-[#1a1a1a]"
+            className="inline-block ml-3 w-[8px] md:w-[16px] h-[70px] md:h-[130px] bg-[#1a1a1a]"
           />
         </h2>
+      </div>
+
+      <div className="w-full max-w-[100rem] mx-auto px-6 md:px-12 lg:px-20 mt-12 md:mt-24 flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-20 relative z-50">
+        <div className="w-full md:w-[40%] flex flex-col space-y-8 z-10 shrink-0">
+           <motion.h3 
+             initial={{ opacity: 0, y: 30 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+             transition={{ duration: 0.8, ease: "easeOut" }}
+             className="text-5xl md:text-[70px] lg:text-[85px] font-sans font-bold text-[#1a1a1a] leading-[1.05] tracking-tight"
+           >
+             Understand How Your<br className="hidden md:block" /> Space Affects You
+           </motion.h3>
+           <motion.p 
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+             className="text-2xl md:text-3xl lg:text-4xl text-zinc-600 font-medium max-w-xl leading-snug"
+           >
+             Monitor and analyze your air, anytime, from anywhere.
+           </motion.p>
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+          className="w-full md:w-[60%] h-[500px] md:h-[650px] lg:h-[750px] border border-zinc-200/60 rounded-[2.5rem] bg-white overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.15)] relative"
+        >
+          {/* Subtle noise pattern to match Shadway context */}
+          <div className="pointer-events-none absolute inset-0 z-10 opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`, backgroundRepeat: "repeat", backgroundSize: "128px 128px" }} />
+          <StackedPanels />
+        </motion.div>
       </div>
     </section>
   );

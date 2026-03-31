@@ -1,8 +1,10 @@
 import Hero from './components/Hero';
 import TransitionLayer from './components/TransitionLayer';
 import ProductSection from './components/ProductSection';
-import FeaturesSection from './components/FeaturesSection';
-import CinematicShowcase from './components/CinematicShowcase';
+import DifferencesSection from './components/DifferencesSection';
+import HowItWorksSection from './components/HowItWorksSection';
+
+import Dashboard3D from './components/Dashboard3D';
 
 function App() {
   return (
@@ -10,8 +12,9 @@ function App() {
       <Hero />
       <TransitionLayer />
       <ProductSection />
-      <CinematicShowcase />
-      <FeaturesSection />
+      <DifferencesSection />
+      <HowItWorksSection />
+      <Dashboard3D />
     </main>
   );
 }

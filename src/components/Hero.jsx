@@ -50,16 +50,32 @@ export default function Hero() {
 
         {/* Taskbar */}
         <div className="hidden md:flex items-center justify-center gap-10 py-3 px-8">
-          {['About us', 'Our Product', 'Our Team', 'Pricing', 'Contact us'].map((item) => (
-            <motion.a 
-              whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.5)', y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              key={item} 
-              href={`#${item.toLowerCase().replace(' ', '-')}`} 
-              className="text-[26px] px-5 py-2 rounded-full font-[family-name:var(--font-geist)] font-medium text-black hover:bg-gray-100 transition-all pointer-events-auto leading-none"
-            >
-              {item}
-            </motion.a>
+          {[
+            { name: 'About us', menu: ['Vision', 'Mission', 'Careers'] },
+            { name: 'Our Product', menu: ['Features', 'Specs', 'API'] },
+            { name: 'Pricing', menu: ['Plans', 'Enterprise'] }
+          ].map((item) => (
+            <div key={item.name} className="relative group pointer-events-auto">
+              <motion.a 
+                whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.5)', y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                href={`#${item.name.toLowerCase().replace(' ', '-')}`} 
+                className="inline-block text-[32px] px-5 py-2 rounded-full font-[family-name:var(--font-geist)] font-medium text-black hover:bg-gray-100 transition-all leading-none"
+              >
+                {item.name}
+              </motion.a>
+              
+              {/* Dropdown Menu */}
+              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-50">
+                <div className="py-2 flex flex-col items-center">
+                  {item.menu.map(subItem => (
+                    <a key={subItem} href={`#${subItem.toLowerCase()}`} className="w-full text-center px-4 py-3 text-[20px] font-medium text-gray-700 hover:text-black hover:bg-gray-100/80 transition-colors">
+                      {subItem}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
           ))}
         </div>
 
