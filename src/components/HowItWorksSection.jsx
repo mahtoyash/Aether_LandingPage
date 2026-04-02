@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AreaChart, Area, Grid, XAxis, ChartTooltip } from "./ui/area-chart";
+import InteractiveDashboard from "./InteractiveDashboard";
+import TypewriterText from "./TypewriterText";
 
 const generateCO2Data = () => {
   const data = [];
@@ -32,7 +34,7 @@ export default function HowItWorksSection() {
       <div className="mx-auto max-w-7xl px-6 md:px-12 w-full">
         {/* Header */}
         <div className="flex flex-col items-center justify-center text-center w-full mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-black mb-6 drop-shadow-sm">
+          <h2 className="text-[76px] md:text-[96px] font-semibold tracking-[-0.03em] text-black mb-6 drop-shadow-sm leading-none">
             How it works
           </h2>
           <p className="max-w-2xl text-lg text-zinc-600">
@@ -62,7 +64,7 @@ export default function HowItWorksSection() {
             </div>
 
             {/* Chart */}
-            <div className="flex-1 w-full min-h-0 relative isolate">
+            <div className="flex-1 w-full min-h-0 relative isolate mt-8">
               {data.length > 0 && (
                 <AreaChart data={data} xDataKey="date">
                   <Grid horizontal vertical={false} />
@@ -102,6 +104,16 @@ export default function HowItWorksSection() {
             </div>
           </div>
         </div>
+
+        <div className="mt-48 mb-6 w-full flex justify-center text-center z-20 relative">
+          <TypewriterText 
+            text="Everything important for You" 
+            className="text-5xl md:text-7xl font-bold tracking-[-0.03em] text-black drop-shadow-sm font-[family-name:var(--font-geist)]"
+          />
+        </div>
+
+        {/* Interactive Dashboard Addition */}
+        <InteractiveDashboard />
       </div>
     </section>
   );
